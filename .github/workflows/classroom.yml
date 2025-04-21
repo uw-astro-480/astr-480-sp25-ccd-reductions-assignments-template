@@ -23,27 +23,11 @@ jobs:
         with:
           python-version: 3.12
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
-        with:
-          enable-cache: true
-
       - name: Install dependencies
         run: |
-          uv sync --no-dev --frozen
+          pip install -e .
 
       - name: Test with pytest
-        id: pytest-test
-        uses: classroom-resources/autograding-command-grader@v1
-        with:
-          test-name: Pytest test
-          command: uv run pytest
-          timeout: 60
-          max-score: 100
-
-      - name: Autograding Reporter
-        uses: classroom-resources/autograding-grading-reporter@v1
-        env:
-          PYTEST-TEST_RESULTS: "${{steps.pytest-test.outputs.result}}"
-        with:
-          runners: pytest-test
+        run: |
+          pip install pytest pytest-mock pytest-sugar
+          pytest
