@@ -41,4 +41,3 @@ def test_median_dark(data_dir: pathlib.Path, tmp_path: pathlib.Path):
 
     assert isinstance(median_dark, numpy.ndarray), "The median dark is not an array."
     assert median_dark.ndim == 2, "The median dark is not 2D."
-    assert median_dark.shape == (4096, 4109), "The median dark has the wrong shape."

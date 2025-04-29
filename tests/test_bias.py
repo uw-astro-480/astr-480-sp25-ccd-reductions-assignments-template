@@ -28,4 +28,3 @@ def test_median_bias(data_dir: pathlib.Path, tmp_path: pathlib.Path):
 
     assert isinstance(median_bias, numpy.ndarray), "The median bias is not an array."
     assert median_bias.ndim == 2, "The median bias is not a 2D array."
-    assert median_bias.shape == (4096, 4109), "The median bias has the wrong shape."

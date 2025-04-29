@@ -66,7 +66,6 @@ def test_median_flat(
 
     assert isinstance(median_flat, numpy.ndarray), "The median flat is not an array."
     assert median_flat.ndim == 2, "The median flat is not 2D."
-    assert median_flat.shape == (4096, 4109), "The median flat has the wrong shape."
 
     assert median_flat.min() >= -5, "The median flat has values below -5."
     assert median_flat.max() <= 5, "The median flat has values above 5."

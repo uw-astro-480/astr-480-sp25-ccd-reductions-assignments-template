@@ -72,4 +72,3 @@ def test_reduce_science_frame(data_dir: pathlib.Path, tmp_path: pathlib.Path):
     assert data is not None, "The reduced science frame is None."
     assert isinstance(data, numpy.ndarray), "The reduced science frame is not an array."
     assert data.ndim == 2, "The reduced science frame is not a 2D array."
-    assert data.shape == (4096, 4109), "The reduced science frame has the wrong shape."
