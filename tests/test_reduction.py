@@ -6,13 +6,15 @@
 
 from __future__ import annotations
 
+import pathlib
 
-def test_reduction():
+
+def test_reduction(data_dir: pathlib.Path):
     """Test the main reduction script. Just checks that it runs without errors."""
 
     from ccd.reduction import run_reduction
 
     # Run the reduction script
-    run_reduction()
+    run_reduction(str(data_dir))
 
     assert True  # To make sure the test is not skipped.
