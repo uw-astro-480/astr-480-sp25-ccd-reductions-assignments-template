@@ -13,7 +13,7 @@ from astropy.io import fits
 from photutils.datasets import load_star_image
 
 
-@pytest.xfail()
+@pytest.mark.xfail
 def test_plot_radial_profile(tmp_path: pathlib.Path):
     """Tests plot_radial_profile()."""
 
