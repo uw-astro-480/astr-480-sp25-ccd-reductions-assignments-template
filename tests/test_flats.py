@@ -47,7 +47,7 @@ def test_median_flat(
         dark_files = sorted(pathlib.Path(data_dir).glob("Dark*.fit*"))
         median_dark = create_median_dark(
             dark_files,
-            median_bias_file,
+            str(median_bias_file),
             str(median_dark_file),
         )
 
