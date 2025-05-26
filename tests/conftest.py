@@ -56,3 +56,14 @@ def data_dir():
 
         if os.path.exists(TMP_DIR):
             subprocess.run(f"rm -rf {TMP_DIR}", shell=True)
+
+
+@pytest.fixture(scope="function", autouse=True)
+def reset_cwd():
+    """Fixture to change the working directory to the data directory for each test."""
+
+    original_dir = os.getcwd()
+
+    yield
+
+    os.chdir(original_dir)
