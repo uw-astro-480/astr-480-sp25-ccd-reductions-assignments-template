@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import os
 import pathlib
+import shutil
 
 
 def test_reduction(data_dir: pathlib.Path, tmp_path: pathlib.Path):
@@ -15,9 +16,13 @@ def test_reduction(data_dir: pathlib.Path, tmp_path: pathlib.Path):
 
     from ccd.reduction import run_reduction
 
-    os.chdir(tmp_path / "test_reduction")
+    os.chdir(tmp_path)
 
-    # Run the reduction script
-    run_reduction(str(data_dir))
+    try:
+        # Run the reduction script
+        run_reduction(str(data_dir))
+    finally:
+        if tmp_path.exists():
+            shutil.rmtree(tmp_path)
 
     assert True  # To make sure the test is not skipped.
