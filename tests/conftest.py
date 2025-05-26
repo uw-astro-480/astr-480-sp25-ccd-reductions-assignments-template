@@ -35,7 +35,12 @@ def data_dir():
             shell=True,
         )
 
-    yield pathlib.Path(f"{TMP_DIR}/ccd_reductions_data/")
+    data_path = pathlib.Path(f"{TMP_DIR}/ccd_reductions_data/")
+
+    yield data_path
 
     if os.path.exists(TMP_TARFILE):
         os.unlink(TMP_TARFILE)
+
+    if os.path.exists(data_path):
+        subprocess.run(f"rm -rf {TMP_DIR}/ccd_reductions_data", shell=True)
