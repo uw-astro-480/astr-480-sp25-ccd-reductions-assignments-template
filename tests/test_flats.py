@@ -92,7 +92,10 @@ def test_plot_flat(tmp_path: pathlib.Path):
     # Make sure I get the correct argument since some students have fixed the typo
     # for ouput_filename to output_filename
     spec = inspect.getfullargspec(plot_flat)
-    output_filename_arg = spec.args[1]
+    if "output_filename" in spec.args:
+        output_filename_arg = "output_filename"
+    else:
+        output_filename_arg = "ouput_filename"
 
     plot_flat(
         median_flat_filename=str(tmp_path / "median_flat.fits"),
