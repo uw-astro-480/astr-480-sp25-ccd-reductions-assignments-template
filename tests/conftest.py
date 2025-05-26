@@ -59,7 +59,7 @@ def data_dir():
 
 
 @pytest.fixture(scope="function", autouse=True)
-def reset_cwd():
+def set_cwd():
     """Fixture to change the working directory to the data directory for each test."""
 
     original_dir = os.getcwd()
