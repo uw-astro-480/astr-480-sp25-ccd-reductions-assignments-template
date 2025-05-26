@@ -32,6 +32,8 @@ def data_dir():
             )
     else:
         if not os.path.exists(TMP_DIR):
+            print("Downloading CCD reductions data...")
+
             subprocess.run(
                 f"curl -o {TMP_TARFILE} https://faculty.washington.edu/gallegoj/astr480/ccd_reductions_data.tar.bz2",
                 shell=True,
@@ -52,5 +54,5 @@ def data_dir():
         if os.path.exists(TMP_TARFILE):
             os.unlink(TMP_TARFILE)
 
-        if os.path.exists(data_path):
-            subprocess.run(f"rm -rf {TMP_DIR}/ccd_reductions_data", shell=True)
+        if os.path.exists(TMP_DIR):
+            subprocess.run(f"rm -rf {TMP_DIR}", shell=True)
