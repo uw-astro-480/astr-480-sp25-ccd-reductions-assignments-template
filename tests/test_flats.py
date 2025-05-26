@@ -6,6 +6,7 @@
 
 from __future__ import annotations
 
+import inspect
 import os
 import pathlib
 
@@ -77,7 +78,7 @@ def test_plot_flat(tmp_path: pathlib.Path):
     from ccd.flats import plot_flat
 
     # Create a dummy median flat file for testing
-    median_flat = numpy.ones((4096, 4109))
+    median_flat = numpy.ones((1024, 1024))
 
     median_flat_hdul = fits.HDUList([fits.PrimaryHDU(data=median_flat)])
     median_flat_hdul.writeto(str(tmp_path / "median_flat.fits"), overwrite=True)
@@ -88,10 +89,15 @@ def test_plot_flat(tmp_path: pathlib.Path):
 
     os.chdir(tmp_path)  # Change to the temporary directory
 
+    # Make sure I get the correct argument since some students have fixed the typo
+    # for ouput_filename to output_filename
+    spec = inspect.getfullargspec(plot_flat)
+    output_filename_arg = spec.args[1]
+
     plot_flat(
         median_flat_filename=str(tmp_path / "median_flat.fits"),
-        ouput_filename=str(output_filename),
         profile_ouput_filename=str(profile_output_filename),
+        **{output_filename_arg: str(output_filename)},
     )
 
     # Check if the plot file was created
