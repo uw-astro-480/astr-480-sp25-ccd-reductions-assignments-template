@@ -97,10 +97,17 @@ def test_plot_flat(tmp_path: pathlib.Path):
     else:
         output_filename_arg = "ouput_filename"
 
+    if "profile_ouput_filename" in spec.args:
+        profile_output_filename_arg = "profile_ouput_filename"
+    else:
+        profile_output_filename_arg = "profile_ouput_filename"
+
     plot_flat(
         median_flat_filename=str(tmp_path / "median_flat.fits"),
-        profile_ouput_filename=str(profile_output_filename),
-        **{output_filename_arg: str(output_filename)},
+        **{
+            output_filename_arg: str(output_filename),
+            profile_output_filename_arg: str(profile_output_filename),
+        },
     )
 
     # Check if the plot file was created
