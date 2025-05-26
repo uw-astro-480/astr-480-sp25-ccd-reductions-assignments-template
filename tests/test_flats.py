@@ -100,7 +100,7 @@ def test_plot_flat(tmp_path: pathlib.Path):
     if "profile_ouput_filename" in spec.args:
         profile_output_filename_arg = "profile_ouput_filename"
     else:
-        profile_output_filename_arg = "profile_ouput_filename"
+        profile_output_filename_arg = "profile_output_filename"
 
     plot_flat(
         median_flat_filename=str(tmp_path / "median_flat.fits"),
